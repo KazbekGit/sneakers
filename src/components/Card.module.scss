@@ -1,0 +1,65 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+
+    width: 280px;
+
+    padding: 10px;
+
+    border: 1px solid rgb(81, 110, 110);
+    border-radius: 4px;
+}
+
+.card p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.card button {
+    margin-top: auto;
+
+    min-height: 30px;
+    bottom: none;
+
+    border: none;
+    border-radius: 4px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    cursor: pointer;
+
+
+    &:active {
+        background-color: #a8a8a8;
+    }
+
+}
+
+.card > span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+    margin-left: 10px;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background-color: #8181814b;
+}
+
+.unChecked {
+    background-color: #d3d2d2;
+
+}
+
+.checked {
+    background-color: #1d8537;
+}
