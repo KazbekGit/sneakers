@@ -9,14 +9,23 @@ function App() {
   const [cards, setCards] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpened, setIsCartOpened] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
+  const getSearchValue = (evt) => {
+    setSearchValue(evt.target.value);
+    setCartItems(
+      cartItems.filter((card) => {
+        card.title.includes(evt.target.value);
+      })
+    );
+  };
 
   const handleCart = () => {
     setIsCartOpened((prev) => !prev);
   };
 
   const addToCart = (newCartItem) => {
-    setCartItems([...cartItems, newCartItem]);
+    setCartItems((prev) => [...prev, newCartItem]);
   };
 
   useEffect(() => {
@@ -43,19 +52,28 @@ function App() {
           />
         )}
         <h1>Все кроссовки</h1>
+        <input
+          className={styles.search}
+          type="text"
+          placeholder="Поиск товаров..."
+          value={searchValue}
+          onChange={getSearchValue}
+        />
         <div className={styles.cards}>
-          {cards.map((card) => (
-            <Card
-              key={card.id}
-              id={card.id}
-              title={card.title}
-              albumId={card.albumId}
-              url={card.url}
-              thumbnailUrl={card.thumbnailUrl}
-              price={6784}
-              addToCart={(currentCard) => addToCart(currentCard)}
-            />
-          ))}
+          {cards
+            .filter((card) => card.title.toLowerCase().includes(searchValue.toLowerCase()))
+            .map((card) => (
+              <Card
+                key={card.id}
+                id={card.id}
+                title={card.title}
+                albumId={card.albumId}
+                url={card.url}
+                thumbnailUrl={card.thumbnailUrl}
+                price={6784}
+                addToCart={(currentCard) => addToCart(currentCard)}
+              />
+            ))}
         </div>
       </div>
     </div>

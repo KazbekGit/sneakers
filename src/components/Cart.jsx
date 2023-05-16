@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Cart.module.scss";
 
-const Cart = ({ handleCart, cartCards }) => {
+const Cart = ({ handleCart, cartCards = []}) => {
   return (
     <>
       <div className={styles.overlay} onClick={handleCart}></div>
