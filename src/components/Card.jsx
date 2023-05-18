@@ -3,15 +3,19 @@ import styles from "./Card.module.scss";
 
 const Card = ({ albumId, id, title, url, thumbnailUrl, price, addToCart }) => {
   const [btnChecked, setBtnChecked] = useState(false);
+  const [btnFavoriteChecked, setBtnFavoriteChecked] = useState(false);
 
   const addCardToCart = () => {
     setBtnChecked((prev) => !prev);
-    addToCart({ albumId, id, title, url, thumbnailUrl, price });
+    (!btnChecked && addToCart({ albumId, id, title, url, thumbnailUrl, price }));
   };
 
   return (
     <div className={styles.card}>
-      <span>{id}</span>
+      <div className={styles.header}>
+        <span>{id}</span>
+        <img src={btnFavoriteChecked ? 'img/favoriteChecked.svg' : 'img/favoriteUnchecked.svg'} alt="favorite" onClick={() => setBtnFavoriteChecked(!btnFavoriteChecked)}/>
+      </div>
       <img src={thumbnailUrl} alt="thumb" width={32} height={32} />
       <p>{title}</p>
       <div>
