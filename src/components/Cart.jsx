@@ -1,20 +1,20 @@
-import React from "react";
-import styles from "./Cart.module.scss";
+import React from 'react'
+import styles from './Cart.module.scss'
 
-const Cart = ({ handleCart, cartCards = []}) => {
+const Cart = ({ handleCart, cartCards = [] }) => {
   return (
     <>
       <div className={styles.overlay} onClick={handleCart}></div>
       <div className={styles.cart}>
         <div className={styles.wrapper}>
           <div className={styles.innerWrapper}>
-            {cartCards.map((card) => {
+            {cartCards.map(card => {
               return (
                 <div className={styles.card} key={card.id}>
                   <span>{card.id}</span>
                   <img
                     src={card.thumbnailUrl}
-                    alt="thumb"
+                    alt='thumb'
                     width={32}
                     height={32}
                   />
@@ -24,7 +24,7 @@ const Cart = ({ handleCart, cartCards = []}) => {
                     <b>{card.price} rub</b>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
           <div className={styles.buttonsBlock}>
@@ -34,7 +34,7 @@ const Cart = ({ handleCart, cartCards = []}) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

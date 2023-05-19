@@ -1,8 +1,21 @@
 header {
   border-bottom: 1px solid #dadada;
 
-  img {
-    margin-right: 15px;
+  .logo{
     cursor: pointer;
+    margin-right: 15px;
   }
 }
+
+.userNav {
+  min-width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favoriteIcon {
+ 
+}
+
