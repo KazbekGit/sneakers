@@ -8,9 +8,11 @@ import styles from './App.module.scss'
 function App () {
   const [cards, setCards] = useState([])
   const [cartItems, setCartItems] = useState([])
-  const [favoriteCards, setFavoriteCards] = useState([])
   const [isCartOpened, setIsCartOpened] = useState(false)
   const [searchValue, setSearchValue] = useState('')
+
+  const getAPI_users = () => 'http://localhost:3001/users'
+  const getAPI_favorites = () => 'http://localhost:3001/favorites'
 
   const renderCards = () => {
     return cards
@@ -27,6 +29,7 @@ function App () {
           thumbnailUrl={card.thumbnailUrl}
           price={6784}
           addToCart={currentCard => addToCart(currentCard)}
+          addToFavorite={card => addToFavorite(card)}
         />
       ))
   }
@@ -45,10 +48,15 @@ function App () {
     setCartItems(prev => [...prev, newCartItem])
   }
 
+  const addToFavorite = newCartItem => {
+    axios.post(getAPI_favorites(), newCartItem)
+    console.log(getAPI_favorites())
+  }
+
   useEffect(() => {
-    axios
-      .get('https://jsonplaceholder.typicode.com/albums/1/photos')
+    axios.get(getAPI_users())
       .then(response => {
+        console.log(response)
         // handle success
         setCards(response.data)
       })

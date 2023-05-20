@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Card.module.scss";
 
-const Card = ({ albumId, id, title, url, thumbnailUrl, price, addToCart }) => {
+const Card = ({ albumId, id, title, url, thumbnailUrl, price, addToCart, addToFavorite }) => {
   const [btnChecked, setBtnChecked] = useState(false);
   const [btnFavoriteChecked, setBtnFavoriteChecked] = useState(false);
 
@@ -10,11 +10,18 @@ const Card = ({ albumId, id, title, url, thumbnailUrl, price, addToCart }) => {
     (!btnChecked && addToCart({ albumId, id, title, url, thumbnailUrl, price }));
   };
 
+  const addToFavoriteCart = (e) => {
+    setBtnFavoriteChecked(!btnFavoriteChecked)
+    console.log('in Cart onFav click' + e.target)
+
+    addToFavorite({ albumId, id, title, url, thumbnailUrl, price })
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <span>{id}</span>
-        <img src={btnFavoriteChecked ? 'img/favoriteChecked.svg' : 'img/favoriteUnchecked.svg'} alt="favorite" onClick={() => setBtnFavoriteChecked(!btnFavoriteChecked)}/>
+        <img onClick={addToFavoriteCart} src={btnFavoriteChecked ? 'img/favoriteChecked.svg' : 'img/favoriteUnchecked.svg'} alt="favorite" />
       </div>
       <img src={thumbnailUrl} alt="thumb" width={32} height={32} />
       <p>{title}</p>
